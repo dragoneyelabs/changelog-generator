@@ -2,9 +2,10 @@ PROJECT        = changelog-generator
 GOLANG_VERSION = 1.11.2
 
 BIN_DIR        = bin
+PACKAGE        = $(shell go list)
 PACKAGES       = $(shell go list -f '{{.Dir}}' ./... | grep -v /vendor/ )
 GOBUILD        = CGO_ENABLED=0 go build
-DOCKER_RUN     = docker run --rm -w /go -v $(CURDIR):/go golang:$(GOLANG_VERSION)
+DOCKER_RUN     = docker run --rm -w /go/src/$(PACKAGE) -v $(CURDIR):/go/src/$(PACKAGE) golang:$(GOLANG_VERSION)
 
 all: clean fmt lint test build docker-image
 
@@ -36,13 +37,13 @@ windows ?= 0
 .PHONY: build
 build:
 ifeq ($(linux),1)
-	GOARCH=amd64 GOOS=linux $(GOBUILD) -o $(BIN_DIR)/$(PROJECT).linux $(CURDIR)
+	GOARCH=amd64 GOOS=linux $(GOBUILD) -o $(BIN_DIR)/$(PROJECT).linux $(PACKAGE)
 endif
 ifeq ($(darwin),1)
-	GOARCH=amd64 GOOS=darwin $(GOBUILD) -o $(BIN_DIR)/$(PROJECT).darwin $(CURDIR)
+	GOARCH=amd64 GOOS=darwin $(GOBUILD) -o $(BIN_DIR)/$(PROJECT).darwin $(PACKAGE)
 endif
 ifeq ($(windows),1)
-	GOARCH=amd64 GOOS=windows $(GOBUILD) -o $(BIN_DIR)/$(PROJECT).exe $(CURDIR)
+	GOARCH=amd64 GOOS=windows $(GOBUILD) -o $(BIN_DIR)/$(PROJECT).exe $(PACKAGE)
 endif
 
 .PHONY: run
@@ -56,6 +57,7 @@ test:
 docker-%:
 	$(DOCKER_RUN) make $* linux=$(linux) darwin=$(darwin) windows=$(windows)
 
+docker-tag ?= local
 .PHONY: docker-image
 docker-image: docker-build
-	docker build -t $(PROJECT):local .
+	docker build -t $(PROJECT):$(docker-tag) .
