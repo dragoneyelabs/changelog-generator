@@ -6,6 +6,11 @@
 - Initial commit ([4cc2876])
 
 
+### Changes
+
+- Change changelog destination folder ([984c18d])
+
+
 ### Bug Fixes
 
 - Fix Makefile ([fa59a0e])
