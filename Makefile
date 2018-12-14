@@ -7,7 +7,7 @@ PACKAGES       = $(shell go list -f '{{.Dir}}' ./... | grep -v /vendor/ )
 GOBUILD        = CGO_ENABLED=0 go build
 DOCKER_RUN     = docker run --rm -w /go/src/$(PACKAGE) -v $(CURDIR):/go/src/$(PACKAGE) golang:$(GOLANG_VERSION)
 
-all: clean fmt lint test build docker-image
+all: clean fmt lint test changelog build docker-image
 
 .PHONY: clean
 vendors ?= 0
@@ -16,6 +16,10 @@ clean:
 ifeq ($(vendors),1)
 	rm -rf vendor glide.lock
 endif
+
+.PHONY: changelog
+changelog:
+	docker run -v $(shell pwd):/changelog pruizpar/changelog-generator:master -path=/changelog
 
 .PHONY: fmt
 fmt:

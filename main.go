@@ -4,7 +4,6 @@ import (
 	"github.com/dragoneyelabs/changelog-generator/changelog"
 
 	"flag"
-	"os"
 	"path"
 )
 
@@ -16,12 +15,7 @@ func main() {
 		panic("a path for the git project must be specified")
 	}
 
-	w, err := os.Getwd()
-	if err != nil {
-		panic(err)
-	}
-
-	if err := changelog.Generate(*pathFlag, path.Join(w, "CHANGELOG.md")); err != nil {
+	if err := changelog.Generate(*pathFlag, path.Join(*pathFlag, "CHANGELOG.md")); err != nil {
 		panic(err)
 	}
 }
