@@ -1,0 +1,3 @@
+package: github.com/dragoneyelabs/changelog-generator
+import:
+- package: gopkg.in/src-d/go-git.v4

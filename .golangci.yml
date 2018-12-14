@@ -1,0 +1,123 @@
+run:
+  concurrency: 4
+  deadline: 2m
+  issues-exit-code: 1
+  tests: false
+  skip-dirs:
+  - bin
+  skip-files: []
+
+output:
+  format: colored-line-number
+  print-issued-lines: true
+  print-linter-name: true
+
+linters-settings:
+  errcheck:
+    check-type-assertions: false
+    check-blank: false
+  govet:
+    check-shadowing: true
+  golint:
+    min-confidence: 0.8
+  gofmt:
+    simplify: true
+  gocyclo:
+    min-complexity: 10
+  maligned:
+    suggest-new: true
+  dupl:
+    threshold: 100
+  goconst:
+    min-len: 2
+    min-occurrences: 2
+  depguard:
+    list-type: blacklist
+    include-go-root: true
+    packages:
+    - github.com/davecgh/go-spew/spew
+  misspell:
+    locale: US
+  lll:
+    line-length: 120
+    tab-width: 1
+  unused:
+    check-exported: false
+  unparam:
+    algo: # cha, rta
+    check-exported: false
+  nakedret:
+    max-func-lines: 30
+  prealloc:
+    simple: true
+    range-loops: true
+    for-loops: true
+  gocritic:
+    # all checks list: https://github.com/go-critic/checkers
+    enabled-checks:
+    - appendAssign
+    - appendCombine
+    - assignOp
+    - boolExprSimplify
+    - builtinShadow
+    - captLocal
+    - caseOrder
+    - commentedOutCode
+    - commentedOutImport
+    - defaultCaseOrder
+    - deprecatedComment
+    - docStub
+    - dupArg
+    - dupBranchBody
+    - dupCase
+    - dupSubExpr
+    - elseif
+    - emptyFallthrough
+    - emptyStringTest
+    - flagDeref
+    - flagName
+    - hugeParam
+    - ifElseChain
+    - importShadow
+    - indexAlloc
+    - initClause
+    - methodExprCall
+    - nestingReduce
+    - nilValReturn
+    - offBy1
+    - paramTypeCombine
+    - ptrToRefParam
+    - rangeExprCopy
+    - rangeValCopy
+    - regexpMust
+    - singleCaseSwitch
+    - sloppyLen
+    - sloppyReassign
+    - switchTrue
+    - typeSwitchVar
+    - typeUnparen
+    - underef
+    - unlabelStmt
+    - unlambda
+    - unnamedResult
+    - unnecessaryBlock
+    - unslice
+    - valSwap
+    - wrapperFunc
+    - yodaStyleExpr
+    settings:
+      rangeValCopy:
+        sizeThreshold: 64
+
+linters:
+  enable-all: true
+  disable:
+  - gochecknoglobals
+  - gochecknoinits
+  fast: false
+
+issues:
+  exclude: []
+  exclude-use-default: false
+  max-per-linter: 0
+  max-same-issues: 0
