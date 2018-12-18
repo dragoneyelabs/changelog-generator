@@ -7,6 +7,8 @@ import (
 const (
 	// Bitbucket parser type
 	Bitbucket Type = iota
+	// Github parser type
+	Github
 )
 
 // Type represents the parser type
@@ -23,6 +25,8 @@ func GetParser(repositoryType Type, url string) (URLParser, error) {
 	switch repositoryType {
 	case Bitbucket:
 		return newBitbucketParser(url)
+	case Github:
+		return newGithubParser(url)
 	default:
 		return nil, errors.New("invalid parser")
 	}
