@@ -19,7 +19,7 @@ endif
 
 .PHONY: changelog
 changelog:
-	docker run -v $(shell pwd):/changelog pruizpar/changelog-generator:master -path=/changelog
+	docker run -v $(shell pwd):/changelog pruizpar/changelog-generator:master -path=/changelog -repo=github
 
 .PHONY: fmt
 fmt:
