@@ -2,22 +2,37 @@ package repository
 
 import (
 	"errors"
+	"strings"
 )
 
 const (
 	// Bitbucket parser type
-	Bitbucket Type = iota
+	Bitbucket Type = "bitbucket"
 	// Github parser type
-	Github
+	Github Type = "github"
+	// Unknown parser type
+	Unknown Type = "unknown"
 )
 
 // Type represents the parser type
-type Type int
+type Type string
 
 // URLParser allows to return repository URLs
 type URLParser interface {
 	GetCommitURL(hash string) string
 	GetTagURL(tag string) string
+}
+
+// GetType returns the repository type from a string. Returns Unknown type if not found
+func GetType(repositoryType string) Type {
+	switch Type(strings.ToLower(repositoryType)) {
+	case Bitbucket:
+		return Bitbucket
+	case Github:
+		return Github
+	default:
+		return Unknown
+	}
 }
 
 // GetParser returns the URLParser for the given repository type and url

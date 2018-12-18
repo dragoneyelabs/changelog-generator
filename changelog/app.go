@@ -30,7 +30,7 @@ var prefixes = []string{
 }
 
 // Generate executes the changelog generation
-func Generate(gitPath, changelogFilePath string) error {
+func Generate(gitPath, changelogFilePath, repositoryType string) error {
 	r, err := git.GetLocalRepository(gitPath)
 	if err != nil {
 		return err
@@ -47,7 +47,7 @@ func Generate(gitPath, changelogFilePath string) error {
 	var parser repository.URLParser
 	var urls []string
 	if urls, err = r.GetRemoteURLs("origin"); err == nil && len(urls) > 0 { // TODO: pass remote as parameter
-		parser, err = repository.GetParser(repository.Bitbucket, urls[0]) // TODO: pass repository type as parameter
+		parser, err = repository.GetParser(repository.GetType(repositoryType), urls[0])
 		if err != nil {
 			fmt.Printf("WARNING: %s\n", err)
 		}
