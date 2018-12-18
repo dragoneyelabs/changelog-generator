@@ -2,7 +2,8 @@
 
 ### Features
 
-- Update changelog ([209200a](https://github.com/dragoneyelabs/changelog-generator/commit/209200aa41f26c696550db64397c52d46e68c716))
+- Update make changelog task ([5e30fd2](https://github.com/dragoneyelabs/changelog-generator/commit/5e30fd2d82328e83e7ed46d02a1d75a3f24b2fe8))
+- Update changelog ([3912db3](https://github.com/dragoneyelabs/changelog-generator/commit/3912db33798c57a68d29364237837f9deb64877d))
 - Update make run task ([bfbfdf0](https://github.com/dragoneyelabs/changelog-generator/commit/bfbfdf0a7754bf61ea6b0feea805a4b9860f6084))
 - Add repository type argument ([df8cc38](https://github.com/dragoneyelabs/changelog-generator/commit/df8cc3886878522a2870e5b22a1c546d74bfa4a1))
 - Implement github parser ([c63340f](https://github.com/dragoneyelabs/changelog-generator/commit/c63340f63b750a08963bdbadec94085335e48c3a))
@@ -18,5 +19,10 @@
 ### Bug Fixes
 
 - Fix Makefile ([fa59a0e](https://github.com/dragoneyelabs/changelog-generator/commit/fa59a0ef1889813b6fae2a40c87683c980c2ba3e))
+
+
+### Docs
+
+- Update README ([ef1b46c](https://github.com/dragoneyelabs/changelog-generator/commit/ef1b46c8e58df08d1f56a081e6b8e25f1bc1a0f7))
 
 
