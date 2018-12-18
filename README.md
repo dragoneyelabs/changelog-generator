@@ -4,6 +4,26 @@ A simple changelog generator for Git projects, implemented in Go.
 
 ## Getting Started
 
+### How it works
+
+`changelog-generator` is based on the [Commit Convention](https://gist.github.com/stephenparish/9941e89d80e2bc58a153).
+
+In order the generated changelog shows the commits properly classified, every commit has to be formatted as:
+
+```
+<type>: <subject>
+```
+
+Where the supported types are:
+
+- feat
+- refactor
+- fix
+- test
+- docs
+
+> **Example:** feat: add new functionality 
+
 ### Installation
 
 #### Go
