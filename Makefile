@@ -52,7 +52,7 @@ endif
 
 .PHONY: run
 run:
-	go run *.go -path=$(path)
+	go run *.go -path=$(path) -repo=$(repo)
 
 .PHONY: test
 test:
