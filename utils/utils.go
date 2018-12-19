@@ -25,6 +25,20 @@ func GetPrefix(s string, validPrefixes []string, defaultPrefix string) string {
 	return defaultPrefix
 }
 
+// TrimPrefix returns s without the provided leading prefix string, case insensitive. If s doesn't start with prefix, s
+// is returned unchanged.
+func TrimPrefix(s, prefix string) string {
+	if HasPrefix(s, prefix) {
+		return s[len(prefix):]
+	}
+	return s
+}
+
+// HasPrefix tests whether the string s begins with prefix, case insensitive
+func HasPrefix(s, prefix string) bool {
+	return len(s) >= len(prefix) && strings.EqualFold(s[0:len(prefix)], prefix)
+}
+
 // Capitalize capitalize the first letter of the string
 func Capitalize(s string) string {
 	if len(s) == 0 {

@@ -130,7 +130,7 @@ func toCommitParams(commits []git.Commit, prefix string, parser repository.URLPa
 	params := make([]template.CommitParam, 0)
 	msgArr := make([]string, 0)
 	for i := range commits {
-		msg := strings.TrimSpace(strings.TrimPrefix(commits[i].Message, prefix))
+		msg := strings.TrimSpace(utils.TrimPrefix(commits[i].Message, prefix))
 		if msg == "" {
 			continue
 		}
